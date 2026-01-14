@@ -1,0 +1,447 @@
+/* Athena Edu - Override Completo para Layout Legado */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --athena-primary: #6366f1;
+  --athena-primary-dark: #4f46e5;
+  --athena-secondary: #8b5cf6;
+  --athena-success: #10b981;
+  --athena-warning: #f59e0b;
+  --athena-danger: #ef4444;
+  --athena-dark: #1e1b4b;
+  --athena-bg: #f1f5f9;
+  --athena-card: #ffffff;
+  --athena-text: #1e293b;
+  --athena-text-muted: #64748b;
+  --athena-border: #e2e8f0;
+}
+
+/* Reset completo */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  background: var(--athena-bg) !important;
+  color: var(--athena-text) !important;
+  min-height: 100vh !important;
+}
+
+/* Tabela principal - preencher tela toda */
+.tabelanum1, table.tabelanum1 {
+  width: 100% !important;
+  min-height: 100vh !important;
+  background: var(--athena-bg) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.tabelanum2, table.tabelanum2 {
+  width: 100% !important;
+  background: transparent !important;
+}
+
+/* ========== HEADER - Estilo Athena ========== */
+.topo, #topo, tr.topo, tr.topo td, tr#topo td {
+  background: linear-gradient(135deg, var(--athena-dark) 0%, #312e81 100%) !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+.ieducar-header {
+  background: transparent !important;
+  padding: 0.75rem 1.5rem !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Logo - Mudar de i-Educar para Athena Edu */
+.ieducar-header-logo h1 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ieducar-header-logo h1 a {
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+}
+
+/* Esconder texto original e mostrar Athena Edu */
+.ieducar-header-logo h1 a {
+  font-size: 0 !important;
+}
+
+.ieducar-header-logo h1 a::before {
+  content: "Athena Edu" !important;
+  font-size: 1.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.ieducar-header-logo h1 a::after {
+  content: "" !important;
+  display: none !important;
+}
+
+/* Adicionar ícone antes do nome */
+.ieducar-header-logo::before {
+  content: "" !important;
+  width: 40px !important;
+  height: 40px !important;
+  background: linear-gradient(135deg, var(--athena-primary) 0%, var(--athena-secondary) 100%) !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-right: 0.5rem !important;
+}
+
+.ieducar-header-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+.ieducar-header-links .dropdown .dropbtn,
+.ieducar-header-links a,
+.ieducar-header-links span {
+  color: rgba(255,255,255,0.9) !important;
+  font-weight: 500 !important;
+  font-size: 0.9rem !important;
+}
+
+/* ========== MENU LATERAL ========== */
+#menu_lateral, .r3c1, td.r3c1, td[id="menu_lateral"] {
+  background: linear-gradient(180deg, var(--athena-dark) 0%, #312e81 100%) !important;
+  padding: 1rem 0 !important;
+  min-width: 240px !important;
+  width: 240px !important;
+  vertical-align: top !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Esconder busca rápida antiga */
+.busca-rapida-container,
+#menu_lateral > div:first-child,
+.r3c1 > div:first-child {
+  display: none !important;
+}
+
+/* Links do menu */
+#menu_lateral a,
+.r3c1 a,
+.menuVertical a,
+ul.menuVertical a {
+  display: block !important;
+  padding: 0.75rem 1.5rem !important;
+  color: rgba(255,255,255,0.7) !important;
+  text-decoration: none !important;
+  font-size: 0.9rem !important;
+  border-left: 3px solid transparent !important;
+  transition: all 0.2s ease !important;
+  background: transparent !important;
+}
+
+#menu_lateral a:hover,
+.r3c1 a:hover,
+.menuVertical a:hover {
+  background: rgba(255,255,255,0.1) !important;
+  border-left-color: var(--athena-primary) !important;
+  color: white !important;
+}
+
+/* Menu item ativo */
+#menu_lateral li.ativo,
+#menu_lateral li.ativo a,
+.menuVertical .ativo,
+.menuVertical .ativo a,
+#menu_lateral a.active,
+.r3c1 li.selecionado,
+.r3c1 li.selecionado a {
+  background: rgba(255,255,255,0.15) !important;
+  border-left-color: var(--athena-primary) !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+/* Títulos de seção do menu */
+#menu_lateral span,
+.r3c1 span:not(.notification-balloon),
+.menuVertical > span {
+  display: block !important;
+  padding: 1.25rem 1.5rem 0.5rem !important;
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Remover bullets das listas */
+#menu_lateral ul,
+.r3c1 ul,
+.menuVertical {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+#menu_lateral li,
+.r3c1 li {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ========== ÁREA DE CONTEÚDO ========== */
+#corpo, td#corpo, td[id="corpo"] {
+  background: var(--athena-bg) !important;
+  padding: 1.5rem 2rem !important;
+  vertical-align: top !important;
+  width: 100% !important;
+}
+
+/* ========== MENU HORIZONTAL SUPERIOR ========== */
+.navegacao-principal,
+div.navegacao-principal,
+.menu-superior {
+  background: var(--athena-card) !important;
+  border-bottom: 1px solid var(--athena-border) !important;
+  padding: 0 1rem !important;
+  margin: 0 !important;
+  display: flex !important;
+  gap: 0 !important;
+}
+
+.navegacao-principal a,
+.menu-superior a {
+  display: inline-block !important;
+  padding: 1rem 1.25rem !important;
+  color: var(--athena-text) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.2s !important;
+  background: transparent !important;
+}
+
+.navegacao-principal a:hover,
+.navegacao-principal a.active {
+  color: var(--athena-primary) !important;
+  border-bottom-color: var(--athena-primary) !important;
+  background: rgba(99, 102, 241, 0.05) !important;
+}
+
+/* ========== BREADCRUMB ========== */
+.fundoLocalizacao, td.fundoLocalizacao {
+  background: var(--athena-card) !important;
+  padding: 1rem 1.5rem !important;
+  border-bottom: 1px solid var(--athena-border) !important;
+  font-size: 0.85rem !important;
+  color: var(--athena-text-muted) !important;
+  border-radius: 0.75rem 0.75rem 0 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.fundoLocalizacao a {
+  color: var(--athena-primary) !important;
+}
+
+/* ========== CARDS E TABELAS ========== */
+.tablelistagem, table.tablelistagem {
+  background: var(--athena-card) !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  border: 1px solid var(--athena-border) !important;
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+.tablecadastro, table.tablecadastro {
+  width: 100% !important;
+  background: var(--athena-card) !important;
+}
+
+/* ========== FORMULÁRIOS ========== */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="search"],
+textarea,
+select {
+  font-family: 'Inter', sans-serif !important;
+  padding: 0.625rem 0.875rem !important;
+  border: 1px solid var(--athena-border) !important;
+  border-radius: 0.5rem !important;
+  font-size: 0.9rem !important;
+  background: var(--athena-card) !important;
+  color: var(--athena-text) !important;
+  transition: all 0.2s !important;
+  outline: none !important;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--athena-primary) !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+}
+
+/* Labels */
+td.formlttd, .formlttd, label {
+  font-weight: 500 !important;
+  color: var(--athena-text) !important;
+  font-size: 0.875rem !important;
+  padding: 0.5rem 0.5rem 0.5rem 0 !important;
+}
+
+/* ========== BOTÕES ========== */
+input[type="submit"],
+input[type="button"],
+button:not(.athena-icon-btn),
+.btn,
+.button {
+  font-family: 'Inter', sans-serif !important;
+  padding: 0.625rem 1.25rem !important;
+  background: var(--athena-primary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  font-weight: 500 !important;
+  font-size: 0.875rem !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+}
+
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover,
+.btn:hover {
+  background: var(--athena-primary-dark) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ========== DROPDOWN DO USUÁRIO ========== */
+.dropdown-content {
+  background: var(--athena-card) !important;
+  border: 1px solid var(--athena-border) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+  padding: 0.5rem 0 !important;
+  min-width: 150px !important;
+}
+
+.dropdown-content a {
+  display: block !important;
+  padding: 0.625rem 1rem !important;
+  color: var(--athena-text) !important;
+  font-size: 0.875rem !important;
+  border-left: none !important;
+}
+
+.dropdown-content a:hover {
+  background: var(--athena-bg) !important;
+  color: var(--athena-primary) !important;
+}
+
+/* ========== RODAPÉ ========== */
+.rodape, tr.rodape, tr.rodape td {
+  background: var(--athena-card) !important;
+  border-top: 1px solid var(--athena-border) !important;
+  padding: 1rem 1.5rem !important;
+  color: var(--athena-text-muted) !important;
+  font-size: 0.8rem !important;
+  text-align: center !important;
+}
+
+/* Avatar */
+.avatar img, img.avatar, img.avatar-35 {
+  border-radius: 50% !important;
+  border: 2px solid var(--athena-primary) !important;
+  width: 35px !important;
+  height: 35px !important;
+}
+
+/* ========== TÍTULOS ========== */
+.tableDetalheLinhaTitulo, td.tableDetalheLinhaTitulo {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+  color: var(--athena-text) !important;
+  padding: 1rem 1.5rem !important;
+  background: var(--athena-card) !important;
+  border-bottom: 2px solid var(--athena-primary) !important;
+}
+
+/* ========== ZEBRA STRIPES ========== */
+tr.linhaPar, tr:nth-child(even) {
+  background: rgba(241, 245, 249, 0.5) !important;
+}
+
+tr.linhaImpar, tr:nth-child(odd) {
+  background: var(--athena-card) !important;
+}
+
+/* ========== LINKS ========== */
+a {
+  color: var(--athena-primary) !important;
+  text-decoration: none !important;
+}
+
+a:hover {
+  color: var(--athena-primary-dark) !important;
+}
+
+/* Exceção para links no menu lateral */
+#menu_lateral a, .r3c1 a {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* ========== NOTIFICAÇÕES ========== */
+.notification-balloon {
+  background: var(--athena-danger) !important;
+  color: white !important;
+  font-size: 0.7rem !important;
+  padding: 2px 6px !important;
+  border-radius: 10px !important;
+}
+
+/* ========== SCROLLBAR ========== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--athena-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--athena-text-muted);
+}
+
+/* ========== OCULTAR ELEMENTOS ========== */
+.DOM_expansivel {
+  display: none !important;
+}
+
+/* Esconder "BUSCA RÁPIDA" texto */
+#menu_lateral > *:first-child,
+.r3c1 > strong:first-child {
+  display: none !important;
+}

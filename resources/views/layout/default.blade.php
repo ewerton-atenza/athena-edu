@@ -85,6 +85,8 @@
     <script src='{{ Asset::get('/intranet/scripts/jquery/jquery-ui.min-1.9.2/js/jquery-ui-1.9.2.custom.min.js') }}'></script>
     <script src='{{ Asset::get('/intranet/scripts/summernote/summernote-lite.js') }}'></script>
     <script src='{{ Asset::get('/intranet/scripts/summernote/summernote-pt-BR.js') }}'></script>
+<link rel="stylesheet" type="text/css" href="/athena-edu/css/legacy-override.css">
+<link rel="stylesheet" type="text/css" href="/athena-edu/css/legacy-override.css">
 </head>
 <body>
 
