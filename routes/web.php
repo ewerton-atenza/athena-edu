@@ -201,3 +201,10 @@ Route::group(['middleware' => ['ieducar.navigation', 'ieducar.footer', 'ieducar.
 
 Route::get('/auth/redirect', SocialiteRedirectController::class)->name('socialite.redirect');
 Route::get('/auth/callback', SocialiteCallbackController::class)->name('socialite.callback');
+
+// Athena Edu Dashboard Routes
+Route::middleware(['auth'])->prefix('athena')->group(function () {
+    Route::get('/', [\App\Http\Controllers\AthenaDashboardController::class, 'index'])->name('athena.dashboard');
+    Route::get('/api/stats', [\App\Http\Controllers\AthenaDashboardController::class, 'stats']);
+    Route::get('/api/alerts', [\App\Http\Controllers\AthenaDashboardController::class, 'alerts']);
+});
