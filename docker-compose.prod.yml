@@ -1,0 +1,119 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: ieducar-nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/var/www/html/public:ro
+      - ./storage/app/public:/var/www/html/storage/app/public:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - php
+    networks:
+      - ieducar-network
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: ieducar-php
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - .:/var/www/html
+      - ./storage:/var/www/html/storage
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - ieducar-network
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: ieducar-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ieducar
+      POSTGRES_USER: ieducar
+      POSTGRES_PASSWORD: QzDQXc26fFjr7nrWxlMZ
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ieducar_postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ieducar -d ieducar"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - ieducar-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: ieducar-redis
+    restart: unless-stopped
+    command: redis-server --requirepass EdJxbR8ATO2ZjUEM
+    volumes:
+      - ieducar_redis_data:/data
+    networks:
+      - ieducar-network
+
+  reports:
+    image: portabilis/i-educar-reports:latest
+    container_name: ieducar-reports
+    restart: unless-stopped
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ieducar
+      - SPRING_DATASOURCE_USERNAME=ieducar
+      - SPRING_DATASOURCE_PASSWORD=QzDQXc26fFjr7nrWxlMZ
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - ieducar-network
+
+  queue:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: ieducar-queue
+    restart: unless-stopped
+    command: php artisan queue:work --sleep=3 --tries=3 --max-time=3600
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - php
+      - redis
+    networks:
+      - ieducar-network
+
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: ieducar-scheduler
+    restart: unless-stopped
+    command: sh -c "while true; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - php
+    networks:
+      - ieducar-network
+
+networks:
+  ieducar-network:
+    driver: bridge
+    name: ieducar-network
+
+volumes:
+  ieducar_postgres_data:
+    driver: local
+  ieducar_redis_data:
+    driver: local
