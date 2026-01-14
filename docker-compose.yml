@@ -68,8 +68,11 @@ services:
       PGUSER: ${DB_USERNAME}
     volumes:
       - postgres:/var/lib/postgresql/data
+      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     ports:
       - "5433:5432"
+    shm_size: 2g
 
   redis:
     container_name: ieducar-redis
